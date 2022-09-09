@@ -18,7 +18,11 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-    return view('about');
+    return view('about', [
+        "name" => "Muhammad Rizki Ramadhan",
+        "email" => "muhrizram19@gmail.com",
+        "image" => "muhrizram.jpg"
+    ]);
 });
 
 Route::get('/blog', function () {

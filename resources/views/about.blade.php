@@ -9,8 +9,8 @@
 </head>
 <body>
     <h1>Halaman About</h1>
-    <h3>Muhammad Rizki Ramadhan</h3>
-    <p>muhrizram19@gmail.com</p>
-    <img src="img/muhrizram.jpg" alt="Muhammad Rizki Ramadhan" width="200">
+    <h3><?= $name; ?></h3>
+    <p><?= $email; ?></p>
+    <img src="img/<?= $image; ?>" alt="<?= $name; ?>" width="200">
 </body>
 </html>
