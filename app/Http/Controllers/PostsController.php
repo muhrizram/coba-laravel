@@ -9,8 +9,9 @@ class PostsController extends Controller
 {
     public function index()
     {
-        return view('home',[
-            "title" => "Home"
+        return view('posts', [
+            "title" => "Blog",
+            "posts" => Post::all()
         ]);
     }
 
