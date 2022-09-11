@@ -21,4 +21,4 @@ Route::get('/about', [PostsController::class, 'about']);
 
 Route::get('/blog', [PostsController::class, 'posts']);
 
-Route::get('posts/{slug}', [PostsController::class, 'isi']);
+Route::get('posts/{post:slug}', [PostsController::class, 'isi']);

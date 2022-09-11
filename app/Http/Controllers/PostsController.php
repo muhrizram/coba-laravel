@@ -32,11 +32,11 @@ class PostsController extends Controller
         ]);
     }
 
-    public function isi($slug)
+    public function isi(Post $post)
     {
         return view('post',[
             "title" => "Single Post",
-            "post" => Post::find($slug)
+            "post" => $post
         ]);
     }
 }
