@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\CategoriesController;
 use App\Models\Posts;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home', [
-        'title' => 'Home'
+        'title' => 'Home',
+        'active' => 'home'
     ]);
 });
 
@@ -28,17 +31,14 @@ Route::get('/blog', [PostsController::class, 'posts']);
 
 Route::get('/blog/{post:slug}', [PostsController::class, 'isi']);
 
-Route::get('/categories', function(){
-    return view('categories', [
-        'title' => 'Post Categories',
-        'categories' => Category::all()
-    ]);
-});
+Route::get('/categories', [CategoriesController::class, 'index']);
 
-Route::get('/categories/{category:slug}', function(Category $category){
-    return view('category', [
-        'title' => $category->name,
-        'posts' => $category->posts,
-        'category' =>$category->name
+Route::get('/categories/{category:slug}', [CategoriesController::class, 'category']);
+
+Route::get('/authors/{author:username}', function(User $author){
+    return view('posts', [
+        'title' => "Post by Author : $author->name",
+        'active' => "posts",
+        'posts' => $author->posts->load('category', 'author')
     ]);
 });

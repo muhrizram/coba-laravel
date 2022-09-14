@@ -7,18 +7,12 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    public function index()
-    {
-        return view('posts', [
-            "title" => "Blog",
-            "posts" => Post::all()
-        ]);
-    }
 
     public function about()
     {
         return view('about', [
             "title" => "About",
+            "active" => "about",
             "name" => "Muhammad Rizki Ramadhan",
             "email" => "muhrizram19@gmail.com",
             "image" => "muhrizram.jpg"
@@ -28,8 +22,9 @@ class PostsController extends Controller
     public function posts()
     {
         return view('posts', [
-            "title" => "Blog",
-            "posts" => Post::all()
+            "title" => "All Posts",
+            "active" => "posts",
+            "posts" => Post::latest()->get()
         ]);
     }
 
@@ -37,6 +32,7 @@ class PostsController extends Controller
     {
         return view('post',[
             "title" => "Single Post",
+            "active" => "posts",
             "post" => $post
         ]);
     }
