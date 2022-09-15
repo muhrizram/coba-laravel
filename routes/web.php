@@ -34,11 +34,3 @@ Route::get('/blog/{post:slug}', [PostsController::class, 'isi']);
 Route::get('/categories', [CategoriesController::class, 'index']);
 
 Route::get('/categories/{category:slug}', [CategoriesController::class, 'category']);
-
-Route::get('/authors/{author:username}', function(User $author){
-    return view('posts', [
-        'title' => "Post by Author : $author->name",
-        'active' => "posts",
-        'posts' => $author->posts->load('category', 'author')
-    ]);
-});

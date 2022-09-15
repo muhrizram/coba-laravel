@@ -21,7 +21,9 @@
                     <a class="nav-link {{ $active === 'categories' ? 'active' : '' }}" href="/categories">Categories</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search" action="/blog">
+            <form class="d-flex" role="search" 
+            {{ $active == 'categories' ? 'action=/categories' : 'action=/blog' }}
+            >
                 @if (request('category'))
                     <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
