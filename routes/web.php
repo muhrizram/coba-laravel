@@ -1,11 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CategoriesController;
-use App\Models\Posts;
-use App\Models\Category;
-use App\Models\User;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +31,4 @@ Route::get('/blog/{post:slug}', [PostsController::class, 'isi']);
 
 Route::get('/categories', [CategoriesController::class, 'index']);
 
-Route::get('/categories/{category:slug}', [CategoriesController::class, 'category']);
+Route::get('/login', [LoginController::class, 'index']);
