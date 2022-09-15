@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-
     public function about()
     {
         return view('about', [
@@ -24,7 +23,7 @@ class PostsController extends Controller
         return view('posts', [
             "title" => "All Posts",
             "active" => "posts",
-            "posts" => Post::latest()->get()
+            "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->get()
         ]);
     }
 

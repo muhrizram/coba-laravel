@@ -21,8 +21,14 @@
                     <a class="nav-link {{ $active === 'categories' ? 'active' : '' }}" href="/categories">Categories</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <form class="d-flex" role="search" action="/blog">
+                @if (request('category'))
+                    <input type="hidden" name="category" value="{{ request('category') }}">
+                @endif
+                @if (request('author'))
+                    <input type="hidden" name="author" value="{{ request('author') }}">
+                @endif
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"  name="search" value="{{ request('search') }}" />
                 <button class="btn btn-outline-success" type="submit">
                     Search
                 </button>
