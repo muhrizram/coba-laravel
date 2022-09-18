@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +33,11 @@ Route::get('/blog/{post:slug}', [PostsController::class, 'isi']);
 
 Route::get('/categories', [CategoriesController::class, 'index']);
 
-Route::get('/login', [LoginController::class, 'index']);
-
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
-
-Route::get('/register', [RegisterController::class, 'index']);
-
+Route::post('/logout', [LoginController::class, 'logout']);
+ 
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
